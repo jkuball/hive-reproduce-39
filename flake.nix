@@ -29,7 +29,5 @@
 
     disko.url = "github:nix-community/disko";
     disko.inputs.nixpkgs.follows = "nixpkgs";
-
-    nixos-facter-modules.url = "github:nix-community/nixos-facter-modules";
   };
 }

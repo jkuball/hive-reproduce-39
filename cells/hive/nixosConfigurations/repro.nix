@@ -12,9 +12,15 @@ in
 {
   inherit bee;
 
+  # NOTE: The infinite recursion issue arises when you import the disko nixosModules
+  #       and extend the boot.loader configuration by more options.
   imports = [
     inputs.disko.nixosModules.disko
-    inputs.nixos-facter-modules.nixosModules.facter
+    ({ lib, ... }: {
+      options = {
+        boot.loader."test".enable = lib.mkEnableOption "enable test";
+      };
+    })
   ];
 
   # Needed to be a valid nixos configuration.
